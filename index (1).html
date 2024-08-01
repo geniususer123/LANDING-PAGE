@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Queries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        .container {
+            padding: 2rem;
+            max-width: 800px;
+            margin: auto;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            box-sizing: border-box;
+        }
+        .query {
+            background-color: white;
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        .query h2 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        .answer {
+            display: none;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+    </style>
+    <script>
+        function toggleAnswer(id) {
+            const answer = document.getElementById(id);
+            if (answer.style.display === "none") {
+                answer.style.display = "block";
+            } else {
+                answer.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Student Queries</h1>
+    <p>Find answers to common questions</p>
+</header>
+
+<div class="container">
+    <input type="text" class="search-bar" placeholder="Search for a question...">
+    
+    <div class="query" onclick="toggleAnswer('answer1')">
+        <h2>How can I apply for scholarships?</h2>
+        <div class="answer" id="answer1">
+            <p>You can apply for scholarships through your school's financial aid office, or by searching online for scholarships that match your qualifications and interests. Be sure to check deadlines and prepare the necessary documents.</p>
+        </div>
+    </div>
+    
+    <div class="query" onclick="toggleAnswer('answer2')">
+        <h2>What are the best study tips for exams?</h2>
+        <div class="answer" id="answer2">
+            <p>Some effective study tips include: creating a study schedule, taking regular breaks, using flashcards, teaching the material to someone else, and staying organized. Remember to get plenty of rest and eat well.</p>
+        </div>
+    </div>
+    
+    <div class="query" onclick="toggleAnswer('answer3')">
+        <h2>How can I manage my time effectively?</h2>
+        <div class="answer" id="answer3">
+            <p>To manage your time effectively, prioritize your tasks, set realistic goals, use a planner or digital calendar, avoid multitasking, and eliminate distractions. It's also important to schedule time for relaxation and self-care.</p>
+        </div>
+    </div>
+
+    <!-- Add more queries as needed -->
+</div>
+
+</body>
+</html>
