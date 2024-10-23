@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hazard Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        input, button { padding: 10px; font-size: 16px; }
+        #map { height: 400px; width: 100%; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+
+    <h1>Hazard Prediction</h1>
+    <form id="hazardForm">
+        <label for="latitude">Enter Latitude:</label>
+        <input type="number" id="latitude" step="any" required>
+        <label for="longitude">Enter Longitude:</label>
+        <input type="number" id="longitude" step="any" required>
+        <button type="submit">Predict Hazard</button>
+    </form>
+
+    <h2>Hazard Information:</h2>
+    <p id="hazardInfo">Enter a location to predict hazard details.</p>
+
+    <h2>Location Map:</h2>
+    <img id="hazardMap" src="" alt="Hazard Map" style="display:none;">
+
+    <script>
+        document.getElementById('hazardForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const latitude = document.getElementById('latitude').value;
+            const longitude = document.getElementById('longitude').value;
+
+            fetch('/predict_hazard', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ latitude, longitude }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('hazardInfo').textContent = 'Predicted Hazard: ' + data.hazard;
+
+                // Update the map
+                const img = document.getElementById('hazardMap');
+                img.src = 'data:image/png;base64,' + data.map;
+                img.style.display = 'block';
+            })
+            .catch(error => {
+                document.getElementById('hazardInfo').textContent = 'Error predicting hazard';
+            });
+        });
+    </script>
+
+</body>
+</html>
